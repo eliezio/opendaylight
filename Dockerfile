@@ -16,6 +16,9 @@ RUN cd /opt && wget -q -O - https://nexus.opendaylight.org/content/repositories/
     && mv opendaylight-${odl_version} $HOME \
     && chown -R karaf:karaf $HOME
 
+RUN mkdir -p $HOME/.m2
+COPY settings.xml $HOME/.m2
+
 # Tell docker that all future commands should run as the karaf user
 USER $user
 
