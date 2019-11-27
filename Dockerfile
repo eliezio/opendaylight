@@ -1,7 +1,7 @@
 FROM openjdk:8-jre-alpine
 LABEL authors="eliezio.oliveira@est.tech"
 
-ARG odl_version=0.11.0
+ARG odl_version=0.11.1
 ARG user=karaf
 ARG group=karaf
 
