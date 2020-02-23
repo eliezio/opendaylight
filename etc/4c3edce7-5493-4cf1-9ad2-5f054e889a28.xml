@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0" name="4c3edce7-5493-4cf1-9ad2-5f054e889a28">
+    <repository>mvn:io.fabric8/fabric8-karaf-features/3.0.12/xml/features</repository>
+    <feature name="3b0c66bc-9afc-429f-9dda-884da9f86221" version="0.0.0">
+        <feature>fabric8-karaf-checks</feature>
+        <!--
+          == fabric8-karaf-checks 3.0.12 requires that ALL bundles are started, including those
+          == defined as library, which is the case of the diagnostic.boot. See
+          == https://mvncache.opencast.org/nexus/content/groups/public/org/apache/karaf/features/standard/4.2.2/standard-4.2.2-features.xml
+          == The best solution found was to force the starting of this bundle.
+          -->
+        <bundle start="true">mvn:org.apache.karaf.diagnostic/org.apache.karaf.diagnostic.boot/4.2.2</bundle>
+    </feature>
+</features>
