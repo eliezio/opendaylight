@@ -47,10 +47,10 @@ RUN set -eux; \
     tar xzf $archive_fullname; \
     rm $archive_fullname; \
     sed -i.orig $archive_basename/etc/org.apache.karaf.features.cfg \
-      -e 's/^\(featuresRepositories\) *= *\(.*\)$/\1 = \2,\\\n  file:\${karaf.etc}\/4c3edce7-5493-4cf1-9ad2-5f054e889a28.xml/' \
+      -e 's/^\(featuresRepositories\) *= *\(.*\)$/\1 = \2,\\\n  file:\${karaf.etc}\/4c3edce7-5493-4cf1-9ad2-5f054e889a28.xml,\\\n  \${karaf.features.repositories}/' \
       -e 's/^\(featuresBoot\) *= *\(.*\)$/\1 = \2,\\\n  3b0c66bc-9afc-429f-9dda-884da9f86221,\\\n  \${karaf.features.boot}/'; \
     sed -i.orig $archive_basename/bin/karaf \
-      -e 's/^\( *\)\(-Dkaraf.etc="\${KARAF_ETC}"\)\( *\\\)$/\1\2\3\n\1-Dkaraf.features.boot="\${KARAF_FEATURES_BOOT}"\3/'; \
+      -e 's/^\( *\)\(-Dkaraf.etc="\${KARAF_ETC}"\)\( *\\\)$/\1\2\3\n\1-Dkaraf.features.repositories="\${KARAF_FEATURES_REPOSITORIES}"\3\n\1-Dkaraf.features.boot="\${KARAF_FEATURES_BOOT}"\3/'; \
     mv $archive_basename $HOME; \
     chown -R karaf:karaf $HOME
 
