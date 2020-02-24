@@ -16,8 +16,14 @@
 # SPDX-License-Identifier: Apache-2.0
 # ============LICENSE_END=========================================================
 
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jre-alpine as stage0
+RUN apk upgrade --no-cache -a
+
+# Squash previous stage
+FROM scratch
 LABEL authors="eliezio.oliveira@est.tech"
+
+COPY --from=stage0 / /
 
 ARG odl_version=0.11.2
 # SHA1 extracted from:
