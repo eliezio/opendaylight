@@ -32,6 +32,22 @@ $ docker run -d -p 8181:8181 \
   quay.io/blue-onap/opendaylight:v0.11.2-3
 ```
 
+Or using Docker Compose:
+
+```yaml
+version: '3'
+
+services:
+  opendaylight:
+    image: quay.io/blue-onap/opendaylight:v0.11.2-3
+    container_name: opendaylight
+    ports:
+      - "8101:8101"
+      - "8181:8181"
+    environment:
+      - KARAF_FEATURES_BOOT=odl-restconf-all,odl-netconf-topology
+```
+
 #### Step 2: Configure TLS to connect to Netopeer2
 
 Using the files from the directory [./config](https://github.com/blue-onap/opendaylight/tree/master/config),
