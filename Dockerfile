@@ -16,7 +16,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # ============LICENSE_END=========================================================
 
-FROM openjdk:8-jre-alpine as stage0
+FROM adoptopenjdk/openjdk11:alpine-jre as stage0
 RUN apk upgrade --no-cache -a
 
 # Squash previous stage
@@ -25,10 +25,10 @@ LABEL authors="eliezio.oliveira@est.tech"
 
 COPY --from=stage0 / /
 
-ARG odl_version=0.11.2
+ARG odl_version=0.12.0
 # SHA1 extracted from:
 # https://nexus.opendaylight.org/content/repositories/public/org/opendaylight/integration/opendaylight/${odl_version}/opendaylight-${odl_version}.tar.gz.sha1
-ARG odl_sha1=84c5dc4c75e725159247c7fbe1d43459356524b6
+ARG odl_sha1=c9e4aaf31b76f862d6eba11c1928a2ce7610120d
 ARG user=karaf
 ARG group=karaf
 
