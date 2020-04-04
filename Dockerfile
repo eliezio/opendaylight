@@ -54,6 +54,10 @@ RUN set -eux; \
     mv $archive_basename $HOME; \
     chown -R karaf:karaf $HOME
 
+RUN apk add --no-cache \
+    coreutils \
+    curl
+
 COPY etc/ $HOME/etc/
 
 RUN mkdir -p $HOME/.m2
@@ -62,6 +66,12 @@ COPY settings.xml $HOME/.m2
 # Tell docker that all future commands should run as the karaf user
 USER $user
 WORKDIR $HOME
+
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH=$JAVA_HOME/bin:/usr/local/bin:/usr/bin:/bin
+
+COPY config/ /config/
+COPY configure-tls.sh /opt/bin/
 
 #
 # Mutable data files
