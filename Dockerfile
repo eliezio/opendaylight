@@ -81,6 +81,13 @@ WORKDIR $HOME
 # etc/org.opendaylight.aaa.filterchain.cfg
 # etc/org.opendaylight.controller.cluster.datastore.cfg
 
-EXPOSE 8101 1099 44444 8181
+# Karaf SSH shell port
+EXPOSE 8101
+
+# Java RMI
+EXPOSE 1099 44444
+
+# Web UI and MD-SAL RESTCONF
+EXPOSE 8181
 
 ENTRYPOINT $HOME/bin/karaf run
