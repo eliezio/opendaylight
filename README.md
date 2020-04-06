@@ -6,7 +6,7 @@
 ## Overview
 
 This project generates a docker image of the
-[OpenDaylight controller](https://www.opendaylight.org/what-we-do/current-release/sodium), and publishes it at [Docker Hub][dockerhub].
+[OpenDaylight controller](https://www.opendaylight.org/what-we-do/current-release/magnesium), and publishes it at [Docker Hub][dockerhub].
 
 This distribution provides the following enhancements:
 
@@ -24,12 +24,12 @@ This distribution provides the following enhancements:
 
 #### Step 1: Launches OpenDaylight
 
-Two additional features are required: `odl-restconf-all` and `odl-netconf-topology`.
+Two additional features are required: `odl-restconf-all` and `odl-netconf-connector-all`.
 
 ```shell script
 $ docker run -d -p 8181:8181 \
-  -e KARAF_FEATURES_BOOT=odl-restconf-all,odl-netconf-topology \
-  quay.io/blue-onap/opendaylight:v0.11.2-3
+  -e KARAF_FEATURES_BOOT=odl-restconf-all,odl-netconf-connector-all \
+  quay.io/blue-onap/opendaylight:v0.12.0-1
 ```
 
 Or using Docker Compose:
@@ -39,13 +39,13 @@ version: '3'
 
 services:
   opendaylight:
-    image: quay.io/blue-onap/opendaylight:v0.11.2-3
+    image: quay.io/blue-onap/opendaylight:v0.12.0-1
     container_name: opendaylight
     ports:
       - "8101:8101"
       - "8181:8181"
     environment:
-      - KARAF_FEATURES_BOOT=odl-restconf-all,odl-netconf-topology
+      - KARAF_FEATURES_BOOT=odl-restconf-all,odl-netconf-connector-all
 ```
 
 #### Step 2: Configure TLS to connect to Netopeer2
