@@ -67,9 +67,9 @@ pem_body() {
 CA_CERT_ID=xNF_CA_certificate_0_0
 CA_CERT=$(pem_body $CONFIG/ca.pem)
 
-SERVER_PRIV_KEY_ID=ODL_private_key_0
-SERVER_KEY=$(pem_body $CONFIG/server_key.pem)
-SERVER_CERT=$(pem_body $CONFIG/server_cert.pem)
+CLIENT_PRIV_KEY_ID=ODL_private_key_0
+CLIENT_KEY=$(pem_body $CONFIG/client_key.pem)
+CLIENT_CERT=$(pem_body $CONFIG/client_cert.pem)
 
 RESTCONF_URL=$ODL_URL/restconf
 NETCONF_KEYSTORE_PATH=$RESTCONF_URL/config/netconf-keystore:keystore
@@ -103,15 +103,15 @@ if [ "$sc" != "200" -a "$sc" != "204" ]; then
     exit 1
 fi
 
-log INFO Load server private key and certificate
+log INFO Load client private key and certificate
 sc=$(xcurl -X POST $NETCONF_KEYSTORE_PATH --header "Content-Type: application/json" --data "
 {
   \"private-key\": {
-    \"name\": \"$SERVER_PRIV_KEY_ID\",
+    \"name\": \"$CLIENT_PRIV_KEY_ID\",
     \"certificate-chain\": [
-      \"$SERVER_CERT\"
+      \"$CLIENT_CERT\"
     ],
-    \"data\": \"$SERVER_KEY\"
+    \"data\": \"$CLIENT_KEY\"
   }
 }
 ")

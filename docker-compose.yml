@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  opendaylight:
+    image: quay.io/blue-onap/opendaylight:v0.12.0-2
+    container_name: opendaylight
+    ports:
+      - "8101:8101"
+      - "8181:8181"
+      - "6666:6666"
+    environment:
+      - KARAF_FEATURES_BOOT=odl-restconf-all,odl-netconf-connector-all
+    volumes:
+      - ./config:/config

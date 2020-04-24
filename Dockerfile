@@ -70,7 +70,8 @@ WORKDIR $HOME
 ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH=$JAVA_HOME/bin:/usr/local/bin:/usr/bin:/bin
 
-COPY config/ /config/
+VOLUME /config
+
 COPY configure-tls.sh /opt/bin/
 
 #
@@ -99,5 +100,8 @@ EXPOSE 1099 44444
 
 # Web UI and MD-SAL RESTCONF
 EXPOSE 8181
+
+# SSH Call Home
+EXPOSE 6666
 
 ENTRYPOINT $HOME/bin/karaf run
