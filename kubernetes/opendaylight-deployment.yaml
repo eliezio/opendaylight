@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: opendaylight
+  name: opendaylight
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: opendaylight
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 ()
+      creationTimestamp: null
+      labels:
+        io.kompose.service: opendaylight
+    spec:
+      containers:
+      - env:
+        - name: KARAF_FEATURES_BOOT
+          value: odl-restconf-all,odl-netconf-connector-all
+        image: quay.io/blue-onap/opendaylight:v0.12.0-2
+        imagePullPolicy: ""
+        name: opendaylight
+        ports:
+        - containerPort: 8101
+        - containerPort: 8181
+        - containerPort: 6666
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+status: {}
