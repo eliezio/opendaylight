@@ -25,10 +25,10 @@ LABEL authors="eliezio.oliveira@est.tech"
 
 COPY --from=stage0 / /
 
-ARG odl_version=0.12.0
+ARG odl_version=0.12.1
 # SHA1 extracted from:
 # https://nexus.opendaylight.org/content/repositories/public/org/opendaylight/integration/opendaylight/${odl_version}/opendaylight-${odl_version}.tar.gz.sha1
-ARG odl_sha1=c9e4aaf31b76f862d6eba11c1928a2ce7610120d
+ARG odl_sha1=0513c5442f345ca363c437ade1dcd53bc9288384
 ARG user=karaf
 ARG group=karaf
 
